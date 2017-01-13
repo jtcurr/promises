@@ -34,12 +34,17 @@ var writeToFile = function (profile) {
 };
 
 var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
+  const writeFile = Promise.promisify(fs.writeFile);
   return new Promise( (resolve, reject) => {
-    var x = writeToFile.bind(writeFilePath);
+    // var x = writeToFile.bind(writeFilePath);
     resolve(promiseConstructor.pluckFirstLineFromFileAsync(readFilePath)
       .then(promisification.getGitHubProfileAsync)
-      .then(x));
-
+      // .then(writeToFile)
+      .then((profile) => {
+        // console.log(profile, 'profile');
+        // console.log(JSON.stringify(profile), 'stringify');
+        return writeFile(writeFilePath, JSON.stringify(profile));
+      }));
   });
 };
 
