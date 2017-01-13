@@ -31,9 +31,9 @@ describe('Basic chaining', function() {
         });
     });
 
-    beforeEach(function() {
-      fs.writeFileSync(fileToWriteTo, '');
-    });
+    // beforeEach(function() {
+    //   fs.writeFileSync(fileToWriteTo, '');
+    // });
 
     it('should return the promise created by the entire chain', function() {
       // Make sure you return the chain! This will allow you to keep chaining promises
